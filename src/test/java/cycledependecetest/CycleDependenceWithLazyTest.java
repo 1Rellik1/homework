@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * Тест циклической зависимости при использовании аннотации @Lazy.
  * Работает так как сначала внедряется прокси, а уже при использовании сам бин
@@ -20,6 +22,7 @@ public class CycleDependenceWithLazyTest extends CycleDependenceTest {
 
     @Test
     public void circularDependencyFail() {
+        assertThat(firstClass).isNotNull();
         firstClass.say(1);
     }
 }
